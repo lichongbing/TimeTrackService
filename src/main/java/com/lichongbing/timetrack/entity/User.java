@@ -1,4 +1,4 @@
-package cn.echisan.springbootjwtdemo.entity;
+package com.lichongbing.timetrack.entity;
 
 import javax.persistence.*;
 
@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by echisan on 2018/6/23
  */
 @Entity
-@Table(name = "jd_user")
+@Table(name = "users")
 public class User {
 
     @Id

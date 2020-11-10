@@ -1,4 +1,4 @@
-package cn.echisan.springbootjwtdemo.exception;
+package com.lichongbing.timetrack.exception;
 
 /**
  * @description: 自定义异常

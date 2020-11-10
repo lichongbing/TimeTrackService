@@ -1,9 +1,9 @@
-package cn.echisan.springbootjwtdemo.config;
+package com.lichongbing.timetrack.config;
 
-import cn.echisan.springbootjwtdemo.exception.JWTAccessDeniedHandler;
-import cn.echisan.springbootjwtdemo.exception.JWTAuthenticationEntryPoint;
-import cn.echisan.springbootjwtdemo.filter.JWTAuthenticationFilter;
-import cn.echisan.springbootjwtdemo.filter.JWTAuthorizationFilter;
+import com.lichongbing.timetrack.exception.JWTAccessDeniedHandler;
+import com.lichongbing.timetrack.exception.JWTAuthenticationEntryPoint;
+import com.lichongbing.timetrack.filter.JWTAuthenticationFilter;
+import com.lichongbing.timetrack.filter.JWTAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

@@ -1,8 +1,8 @@
-package cn.echisan.springbootjwtdemo.service;
+package com.lichongbing.timetrack.service;
 
-import cn.echisan.springbootjwtdemo.entity.JwtUser;
-import cn.echisan.springbootjwtdemo.entity.User;
-import cn.echisan.springbootjwtdemo.repository.UserRepository;
+import com.lichongbing.timetrack.entity.JwtUser;
+import com.lichongbing.timetrack.entity.User;
+import com.lichongbing.timetrack.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,8 +1,8 @@
-package cn.echisan.springbootjwtdemo.filter;
+package com.lichongbing.timetrack.filter;
 
-import cn.echisan.springbootjwtdemo.entity.JwtUser;
-import cn.echisan.springbootjwtdemo.model.LoginUser;
-import cn.echisan.springbootjwtdemo.utils.JwtTokenUtils;
+import com.lichongbing.timetrack.entity.JwtUser;
+import com.lichongbing.timetrack.model.LoginUser;
+import com.lichongbing.timetrack.utils.JwtTokenUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

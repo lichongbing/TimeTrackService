@@ -1,7 +1,7 @@
-package cn.echisan.springbootjwtdemo.controller;
+package com.lichongbing.timetrack.controller;
 
-import cn.echisan.springbootjwtdemo.entity.User;
-import cn.echisan.springbootjwtdemo.repository.UserRepository;
+import com.lichongbing.timetrack.entity.User;
+import com.lichongbing.timetrack.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,3 +34,4 @@ public class AuthController {
         return save.toString();
     }
 }
+

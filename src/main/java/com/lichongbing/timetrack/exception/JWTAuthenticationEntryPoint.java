@@ -1,4 +1,4 @@
-package cn.echisan.springbootjwtdemo.exception;
+package com.lichongbing.timetrack.exception;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.core.AuthenticationException;

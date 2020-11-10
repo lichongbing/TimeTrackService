@@ -1,4 +1,4 @@
-package cn.echisan.springbootjwtdemo.entity;
+package com.lichongbing.timetrack.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

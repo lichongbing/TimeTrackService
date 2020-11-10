@@ -1,4 +1,4 @@
-package cn.echisan.springbootjwtdemo.model;
+package com.lichongbing.timetrack.model;
 
 /**
  * Created by echisan on 2018/6/23
