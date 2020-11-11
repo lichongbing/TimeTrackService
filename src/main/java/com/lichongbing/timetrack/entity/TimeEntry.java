@@ -27,7 +27,7 @@ public class TimeEntry {
     @Column(name = "stop")
     private Date stop;
     @Column(name = "duration")
-    private Integer duration;
+    private Long duration;
     @Column(name = "tags")
     private String tags;
     @Column(name = "current")
@@ -81,11 +81,11 @@ public class TimeEntry {
         this.stop = stop;
     }
 
-    public Integer getDuration() {
+    public Long getDuration() {
         return duration;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(Long duration) {
         this.duration = duration;
     }
 

@@ -7,8 +7,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author lichongbing
@@ -18,6 +17,9 @@ import javax.transaction.Transactional;
  */
 public interface CrudProjetcRepository extends CrudRepository<Project,Integer> {
 
+    @Transactional
+    @Query(value = "select name from project where id = :id",nativeQuery = true)
+    String findNameById(Integer id);
 
 
 
