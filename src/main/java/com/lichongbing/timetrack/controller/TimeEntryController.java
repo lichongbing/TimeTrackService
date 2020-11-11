@@ -151,26 +151,28 @@ public class TimeEntryController {
         }
         return null;
     }
-    @PutMapping("/{time_entry_id}")
-    public void test3(){
-    /*
-    *
-    *
-    */
+    @PutMapping("/description/{time_entry_id}")
+    public int modifydescription(@PathVariable("time_entry_id")Integer id,
+                               @RequestBody Map<String,String> modifyTimeEntrys){
+        int i = timeEntryRepository.modifyDescriptionById(modifyTimeEntrys.get("description"), id);
+
+        return i;
     }
-    @DeleteMapping("/{time_entry_id}")
-    public void test4(){
-    /*
-    *
-    *
-    */
+    @PutMapping("/tags/{time_entry_id}")
+    public int modifytags(@PathVariable("time_entry_id")Integer id,@RequestBody Map<String,String> modifyTimeEntrys){
+        int i = timeEntryRepository.modifyTagsById(modifyTimeEntrys.get("tags"), id);
+        return i;
     }
+    @PutMapping("/pid/{time_entry_id}")
+    public int modifypid(@PathVariable("time_entry_id")Integer id,@RequestBody Map<String,String> modifyTimeEntrys){
+        int i = timeEntryRepository.modifyTagsById(modifyTimeEntrys.get("pid"), id);
+        return i;
+    }
+
     @GetMapping("/{time_entry_id}")
-    public void test5(){
-    /*
-    *
-    *
-    */
+    public TimeEntry test5(@PathVariable("time_entry_id")Integer id){
+        TimeEntry timeEntry = timeEntryRepository.findTimeEntryById(id);
+        return timeEntry;
     }
 
 
