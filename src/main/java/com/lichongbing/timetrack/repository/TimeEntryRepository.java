@@ -39,6 +39,24 @@ public interface TimeEntryRepository extends CrudRepository<TimeEntry, Integer> 
             nativeQuery = true)
     int modifyStopById(Date stop,Integer id);
 
+    @Transactional
+    @Modifying
+    @Query(value = "update time_entries t  set t.descrptions =?1 where t.id =?2 ",
+            nativeQuery = true)
+    int modifyDescriptionById(String description,Integer id);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update time_entries t  set t.tags =?1 where t.id =?2 ",
+            nativeQuery = true)
+    int modifyTagsById(String tags,Integer id);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update time_entries t  set t.pid =?1 where t.id =?2 ",
+            nativeQuery = true)
+    int modifyPidById(Integer pid,Integer id);
+
 
 
 /*

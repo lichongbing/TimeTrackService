@@ -6,3 +6,8 @@ spring.jpa.show-sql=true
 spring.jpa.hibernate.ddl-auto=update
 
 server.port=8080
+#微信相关参数
+#小程序appid
+weChat.appid=wx3b134ca87b95cc78
+#小程序密钥
+weChat.secret=bdf81143dc167995c825a1fa2d2179d4

@@ -1,10 +1,13 @@
 package com.lichongbing.timetrack.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 /**
  * Created by echisan on 2018/6/23
  */
+@Data
 @Entity
 @Table(name = "users")
 public class User {
@@ -23,45 +26,28 @@ public class User {
     @Column(name = "role")
     private String role;
 
-    public Integer getId() {
-        return id;
-    }
+    @Column(name = "openid")
+    private String openid;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @Column(name = "phonenumber")
+    private String phonenumber;
 
-    public String getUsername() {
-        return username;
-    }
+    @Column(name = "country")
+    private String country;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    @Column(name = "city")
+    private String city;
 
-    public String getPassword() {
-        return password;
-    }
+    @Column(name = "gender")
+    private String gender;
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    @Column(name = "nickname")
+    private String nickname;
 
-    public String getRole() {
-        return role;
-    }
+    @Column(name = "avatarurl")
+    private String avatarurl;
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                '}';
-    }
+    @Column(name = "province")
+    private String province;
 }

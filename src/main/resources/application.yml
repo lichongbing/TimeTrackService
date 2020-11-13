@@ -1,0 +1,26 @@
+logging:
+  level:
+    org.springframework.web: info
+    com.github.binarywang.demo.wx.miniapp: debug
+    cn.binarywang.wx.miniapp: debug
+wx:
+  miniapp:
+    configs:
+        - appid: wx3b134ca87b95cc78
+          secret: bdf81143dc167995c825a1fa2d2179d4
+          token: #微信小程序消息服务器配置的token
+          aesKey: #微信小程序消息服务器配置的EncodingAESKey
+          msgDataFormat: JSON
+spring:
+         datasource:
+                    url: jdbc:mysql://47.108.130.77:3306/test?useSSL=false&characterEncoding=UTF-8
+                    username: root
+                    password: lcb369
+
+         jpa:
+              show_sql: true
+              hibernate:
+                   ddl-auto: update
+wechat:
+  appid: wx3b134ca87b95cc78
+

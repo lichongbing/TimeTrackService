@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface UserRepository extends CrudRepository<User, Integer> {
 
     User findByUsername(String username);
+    boolean findByOpenid(String openid);
 
     @Transactional
     @Modifying
@@ -30,6 +31,8 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     @Modifying
     @Query(value = "update users set pid  = :pid where id = :id",nativeQuery = true)
     int modifyPidById(Integer  pid, Integer id);
+
+
 
 
 
