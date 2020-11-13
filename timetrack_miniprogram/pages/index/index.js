@@ -44,16 +44,30 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
+    //console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+    wx.request({
+      url: 'http://localhost:8080/auth/wx/info',
+      method: "POST",
+      header:{'content-type': 'application/json'},
+      data:{    
+        rawData:e.detail.rawData,
+        encryptedData:e.detail.encryptedData,
+        signature:e.detail.signature,
+        iv:e.detail.iv,
+      },
+      success: res => {
+        console.log(res);
+      }
+    })
     wx.setStorageSync('rawData', e.detail.rawData);
     wx.setStorageSync('signature', e.detail.signature);
     wx.setStorageSync('encryptedData',e.detail.encryptedData);
-    console.log(wx.getStorageSync('signature'));
+    //console.log(wx.getStorageSync('signature'));
     
 
 

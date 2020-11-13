@@ -67,8 +67,6 @@ public class AuthController {
             this.logger.info(session.getOpenid());
             this.logger.info(session.getUnionid());
             sessionKey=session.getSessionKey();
-
-
             //TODO 可以增加自己的逻辑，关联业务相关数据
             return JsonUtils.toJson(session);
         } catch (WxErrorException e) {
@@ -77,6 +75,28 @@ public class AuthController {
         }
 
     }
+
+    private WxMaUserInfo userInfo;
+    @PostMapping("/wx/info")
+    public String info(@RequestBody Map<String,String> registerUser) {
+        String rawData = registerUser.get("rawData");
+        String signature = registerUser.get("signature");
+        String encryptedData = registerUser.get("encryptedData");
+        String iv = registerUser.get("iv");
+
+        final WxMaService wxService = WxMaConfiguration.getMaService(appid);
+
+        // 用户信息校验
+        if (!wxService.getUserService().checkUserInfo(sessionKey, rawData, signature)) {
+            return "user check failed";
+        }
+
+        // 解密用户信息
+        userInfo = wxService.getUserService().getUserInfo(sessionKey, encryptedData, iv);
+
+        return JsonUtils.toJson(userInfo);
+    }
+
     @PostMapping("/wx/phone")
     public String wxphoneregisterUser(@RequestBody Map<String,String> registerUser) {
 
@@ -95,27 +115,16 @@ public class AuthController {
             return "user check failed";
         }
         // 解密
+
         WxMaPhoneNumberInfo phoneNoInfo = wxService.getUserService().getPhoneNoInfo(sessionKey, encryptedData, iv);
+        String phoneNumber = phoneNoInfo.getPhoneNumber();
+
 
         return JsonUtils.toJson(phoneNoInfo);
 
     }
 
-    @GetMapping("/wx/info")
-    public String info(@PathVariable String appid, String sessionKey,
-                       String signature, String rawData, String encryptedData, String iv) {
-        final WxMaService wxService = WxMaConfiguration.getMaService(appid);
 
-        // 用户信息校验
-        if (!wxService.getUserService().checkUserInfo(sessionKey, rawData, signature)) {
-            return "user check failed";
-        }
-
-        // 解密用户信息
-        WxMaUserInfo userInfo = wxService.getUserService().getUserInfo(sessionKey, encryptedData, iv);
-
-        return JsonUtils.toJson(userInfo);
-    }
 
 
 

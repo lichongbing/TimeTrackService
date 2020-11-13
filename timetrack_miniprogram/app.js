@@ -21,8 +21,7 @@ App({
             console.log(res.data.openid);
             console.log(res.data.sessionKey);
             console.log(res.errMsg);
-            this.globalData.sessionkey=res.data.sessionkey;
-            this.globalData.openid=res.data.openid;
+            
 
 
 
@@ -39,6 +38,7 @@ App({
           wx.getUserInfo({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
+          
               this.globalData.userInfo = res.userInfo
               
 
@@ -56,7 +56,5 @@ App({
   },
   globalData: {
     userInfo: null,
-    sessionkey:null,
-    openid:null
   }
 })
