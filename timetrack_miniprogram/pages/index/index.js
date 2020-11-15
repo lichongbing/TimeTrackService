@@ -67,12 +67,7 @@ Page({
     wx.setStorageSync('rawData', e.detail.rawData);
     wx.setStorageSync('signature', e.detail.signature);
     wx.setStorageSync('encryptedData',e.detail.encryptedData);
-    //console.log(wx.getStorageSync('signature'));
-    
-
-
-
-    
+    //console.log(wx.getStorageSync('signature'));  
   },
 
   getPhoneNumber: function (e) {

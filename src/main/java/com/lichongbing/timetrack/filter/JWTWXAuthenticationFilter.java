@@ -1,10 +1,9 @@
 package com.lichongbing.timetrack.filter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lichongbing.timetrack.entity.JwtUser;
 import com.lichongbing.timetrack.model.LoginUser;
 import com.lichongbing.timetrack.utils.JwtTokenUtils;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,24 +15,24 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Created by echisan on 2018/6/23
+ * @author lichongbing
+ * @email 873610008@qq.com
+ * @date 2020/11/14 17:06
+ * com.lichongbing.timetrack.filter
  */
-public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-
-
+public class JWTWXAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private ThreadLocal<Integer> rememberMe = new ThreadLocal<>();
     private AuthenticationManager authenticationManager;
 
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
+    public JWTWXAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
-        super.setFilterProcessesUrl("/auth/login");
+        super.setFilterProcessesUrl("/auth/wx/login");
     }
 
     @Override

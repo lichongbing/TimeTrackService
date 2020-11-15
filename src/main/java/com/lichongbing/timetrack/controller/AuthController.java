@@ -7,9 +7,11 @@ import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lichongbing.timetrack.config.WxMaConfiguration;
+import com.lichongbing.timetrack.entity.TimeEntry;
 import com.lichongbing.timetrack.entity.User;
 import com.lichongbing.timetrack.repository.UserRepository;
 import com.lichongbing.timetrack.utils.JsonUtils;
+import com.lichongbing.timetrack.utils.JwtTokenUtils;
 import me.chanjar.weixin.common.error.WxErrorException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -19,6 +21,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -31,6 +35,9 @@ public class AuthController {
 
     @Value("${wechat.appid}")
     private String appid;
+
+    @Autowired
+    HttpSession session;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -98,8 +105,8 @@ public class AuthController {
     }
 
     @PostMapping("/wx/phone")
-    public String wxphoneregisterUser(@RequestBody Map<String,String> registerUser) {
-
+    public String wxphoneregisterUser(HttpServletRequest request, @RequestBody Map<String,String> registerUser) {
+        session = request.getSession();
         String rawData = registerUser.get("rawData");
         String signature = registerUser.get("signature");
         String encryptedData = registerUser.get("encryptedData");
@@ -117,12 +124,40 @@ public class AuthController {
         // 解密
 
         WxMaPhoneNumberInfo phoneNoInfo = wxService.getUserService().getPhoneNoInfo(sessionKey, encryptedData, iv);
-        String phoneNumber = phoneNoInfo.getPhoneNumber();
 
+        User user = new User();
+        user.setUsername(phoneNoInfo.getPhoneNumber());
+        session.setAttribute("username",phoneNoInfo.getPhoneNumber());
+        user.setAvatarurl(userInfo.getAvatarUrl());
+        user.setOpenid(userInfo.getOpenId());
+        user.setCity(userInfo.getCity());
+        user.setOpenid(userInfo.getOpenId());
+        user.setGender(userInfo.getGender());
+        user.setPhonenumber(phoneNoInfo.getPhoneNumber());
+        user.setProvince(userInfo.getProvince());
+        user.setNickname(userInfo.getNickName());
+        user.setCountry(userInfo.getCountry());
+        user.setPassword(bCryptPasswordEncoder.encode(sessionKey));
+        session.setAttribute("password",sessionKey);
+        user.setRole("ROLE_USER");
+        session.setAttribute("role","ROLE_USER");
+        User save = userRepository.save(user);
+        this.logger.info(JsonUtils.toJson(save));
+        this.logger.info(String.valueOf(phoneNoInfo));
+        this.logger.info(JsonUtils.toJson(phoneNoInfo));
 
-        return JsonUtils.toJson(phoneNoInfo);
+        return session.getId();
 
     }
+//    @GetMapping("/login/in")
+//    public String current(HttpServletRequest request){
+//        String tokenHeader = request.getHeader(JwtTokenUtils.TOKEN_HEADER);
+//        String token=tokenHeader.replace(JwtTokenUtils.TOKEN_PREFIX, "");;
+//        session = request.getSession();
+//        String username= JwtTokenUtils.getUsername(token);
+//
+//        return null;
+//    }
 
 
 

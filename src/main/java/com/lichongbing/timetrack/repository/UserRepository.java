@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface UserRepository extends CrudRepository<User, Integer> {
 
     User findByUsername(String username);
-    boolean findByOpenid(String openid);
+
 
     @Transactional
     @Modifying
@@ -33,7 +33,14 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     int modifyPidById(Integer  pid, Integer id);
 
 
+    @Transactional
+    @Query(value = "select 1 from users where openid = :openid limit 1",nativeQuery = true)
+    int findByOpenid(String openid);
 
+
+/*
+SELECT 1 FROM table WHERE a = 1 AND b = 2 LIMIT 1
+ */
 
 
 }

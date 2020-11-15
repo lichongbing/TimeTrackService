@@ -21,6 +21,24 @@ spring:
               show_sql: true
               hibernate:
                    ddl-auto: update
+         session:
+           redis:
+             flush-mode: on_save
+             namespace: session.example
+             cleanup-cron: 0 * * * * *
+           store-type: redis
+           timeout: 604800
+
+         redis:
+           host: localhost
+           port: 6379
+           jedis:
+             pool:
+               max-active: 100
+               max-wait: 10
+               max-idle: 10
+               min-idle: 10
+           database: 0
 wechat:
   appid: wx3b134ca87b95cc78
 
